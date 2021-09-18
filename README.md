@@ -1,2 +1,1 @@
-# PETNeurotech
-Programa de extensão tecnológica unicap-neurotech
+# pet-neurotech
