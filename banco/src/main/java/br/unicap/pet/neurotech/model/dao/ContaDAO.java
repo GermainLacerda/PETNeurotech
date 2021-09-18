@@ -8,5 +8,9 @@ public interface ContaDAO {
 
     void depositarConta(int numConta, float quantia);
 
-    void criarConta(int numConta);
+    void criarConta(int numConta, int tipoConta);
+
+    void aplicarBonus(int numConta);
+
+    void Saldo (int numConta);
 }

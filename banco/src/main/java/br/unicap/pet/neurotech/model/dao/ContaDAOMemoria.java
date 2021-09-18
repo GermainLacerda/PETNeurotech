@@ -27,8 +27,8 @@ public class ContaDAOMemoria implements ContaDAO {
     }
 
     @Override
-    public void criarConta(int numConta) {
-        Conta aux = new Conta(numConta);
+    public void criarConta(int numConta, int tipoConta) {
+        Conta aux = new Conta(numConta, tipoConta);
         clientes.add(aux);
 
     }
@@ -51,10 +51,38 @@ public class ContaDAOMemoria implements ContaDAO {
 
     @Override
     public void depositarConta(int numConta, float quantia) {
+        double result;
         for (Conta conta : clientes) {
             if (conta.getNumero() == numConta) {
-                conta.depositar(quantia);
+                if (conta.getTipo() == 1) {
+                    conta.depositar(quantia);
+                    result = quantia * 0.01;
+                    conta.AddBonus(result);
+                } else {
+                    conta.depositar(quantia);
+                }
+
             }
         }
+    }
+
+    @Override
+    public void aplicarBonus(int numConta) {
+        for (Conta conta : clientes) {
+            if (conta.getNumero() == numConta) {
+                conta.bonificar();
+            }
+        }
+
+    }
+
+    @Override
+    public void Saldo(int numConta) {
+        for (Conta conta : clientes) {
+            if (conta.getNumero() == numConta) {
+                  System.out.println(conta.toString());
+            }
+        }
+        
     }
 }

@@ -11,7 +11,8 @@ public class MenuCliente {
             System.out.println("\n<<MENU CLIENTE>>");
             System.out.println("1 - Sacar");
             System.out.println("2 - Depositar");
-            System.out.println("3 - Voltar");
+            System.out.println("3 - Ver Saldo");
+            System.out.println("4 - Voltar");
             op = Leitor.getLeitor().nextInt();
             System.out.println("");
             switch (op) {
@@ -21,11 +22,14 @@ public class MenuCliente {
                 case 2:
                     cv.depositar();
                     break;
-                case 3:
+                    case 3:
+                        cv.Saldo();
+                        break;
+                case 4:
                 	System.out.println("Voltando!!");
                     break;
             }
-        } while (op != 3);
+        } while (op != 4);
 
     }
 
