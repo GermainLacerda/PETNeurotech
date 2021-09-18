@@ -1,5 +1,5 @@
 package br.unicap.pet.neurotech.model.dao;
-
+/*
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,3 +41,4 @@ public class GerenteDAOMemoria implements GerenteDAO{
     }
     
 }
+*/

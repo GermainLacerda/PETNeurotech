@@ -20,7 +20,9 @@ public class MenuGerente {
                 case 2:
                     System.out.println("Voltando!!");
                     break;
-            }
+                default:
+            System.out.println("Opção invalida!");            
+        }
         } while (op != 2);
 
     }

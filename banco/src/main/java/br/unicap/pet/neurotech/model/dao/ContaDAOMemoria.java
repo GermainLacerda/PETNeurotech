@@ -3,29 +3,39 @@ package br.unicap.pet.neurotech.model.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClienteDAOMemoria implements ClienteDAO {
+public class ContaDAOMemoria implements ContaDAO {
 
     private List<Conta> clientes;
-    private static ClienteDAOMemoria self;
-    
-    public ClienteDAOMemoria(){
+    private static ContaDAOMemoria self;
+
+    public ContaDAOMemoria() {
         clientes = new ArrayList<Conta>();
     }
 
     @Override
     public boolean buscarConta(int numConta) {
         boolean encontrado = false;
-        for (Conta conta : clientes) {
-            if (conta.getNumero() == numConta) {
-                encontrado = true;
+        if (clientes.isEmpty() == false) {
+            for (Conta conta : clientes) {
+                if (conta.getNumero() == numConta) {
+                    encontrado = true;
+                    return encontrado;
+                }
             }
         }
         return encontrado;
     }
 
-    public static ClienteDAO getInstance() {
+    @Override
+    public void criarConta(int numConta) {
+        Conta aux = new Conta(numConta);
+        clientes.add(aux);
+
+    }
+
+    public static ContaDAO getInstance() {
         if (self == null) {
-            self = new ClienteDAOMemoria();
+            self = new ContaDAOMemoria();
         }
         return self;
     }

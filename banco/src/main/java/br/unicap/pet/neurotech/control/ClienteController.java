@@ -1,11 +1,11 @@
 package br.unicap.pet.neurotech.control;
 
-import br.unicap.pet.neurotech.model.dao.ClienteDAO;
-import br.unicap.pet.neurotech.model.dao.ClienteDAOMemoria;
+import br.unicap.pet.neurotech.model.dao.ContaDAO;
+import br.unicap.pet.neurotech.model.dao.ContaDAOMemoria;
 
 public class ClienteController {
 
-    private ClienteDAO dao = ClienteDAOMemoria.getInstance();
+    private ContaDAO dao = ContaDAOMemoria.getInstance();
 
     public boolean buscar (int numConta){
         return dao.buscarConta(numConta);

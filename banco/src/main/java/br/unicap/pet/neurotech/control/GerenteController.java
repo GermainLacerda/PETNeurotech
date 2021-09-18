@@ -1,11 +1,10 @@
 package br.unicap.pet.neurotech.control;
 
-import br.unicap.pet.neurotech.model.dao.GerenteDAO;
-import br.unicap.pet.neurotech.model.dao.GerenteDAOMemoria;
-
+import br.unicap.pet.neurotech.model.dao.ContaDAO;
+import br.unicap.pet.neurotech.model.dao.ContaDAOMemoria;
 public class GerenteController {
     
-    private GerenteDAO dao = GerenteDAOMemoria.getInstance();
+    private ContaDAO dao = ContaDAOMemoria.getInstance();
 
     public boolean buscar (int numConta){
         return dao.buscarConta(numConta);

@@ -22,6 +22,7 @@ public class MenuPrincipal {
                     break;
                 case 2:
                     acessoGerente.Menu();
+                    break;
                 case 3:
                     System.exit(0);
             }
