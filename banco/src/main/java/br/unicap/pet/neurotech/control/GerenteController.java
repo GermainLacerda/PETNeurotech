@@ -2,7 +2,7 @@ package br.unicap.pet.neurotech.control;
 
 import br.unicap.pet.neurotech.model.dao.ContaDAO;
 import br.unicap.pet.neurotech.model.dao.ContaDAOMemoria;
-
+import br.unicap.pet.neurotech.model.Exceptions.*;
 public class GerenteController {
 
     private ContaDAO dao = ContaDAOMemoria.getInstance();

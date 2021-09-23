@@ -3,6 +3,7 @@ package br.unicap.pet.neurotech.model.dao;
 import java.util.ArrayList;
 import java.util.List;
 import br.unicap.pet.neurotech.model.Exceptions.*;
+
 public class ContaDAOMemoria implements ContaDAO {
 
     private List<Conta> contas;
@@ -33,7 +34,7 @@ public class ContaDAOMemoria implements ContaDAO {
     }
 
     @Override
-    public void sacarConta(int numConta, float quantia) throws SaldoInsuficienteException, ContaInexistenteException{
+    public void sacarConta(int numConta, float quantia) throws SaldoInsuficienteException, ContaInexistenteException {
         for (Conta conta : contas) {
             if (conta.getNumero() == numConta) {
                 conta.sacar(quantia);
