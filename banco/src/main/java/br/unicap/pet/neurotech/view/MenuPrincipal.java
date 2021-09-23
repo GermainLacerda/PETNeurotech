@@ -16,12 +16,14 @@ public class MenuPrincipal {
             System.out.println("3 - Sair");
             op = Leitor.getLeitor().nextInt();
             switch (op) {
-
                 case 1:
                     acessoCliente.Menu();
+                    //no view pedir o login caso nn tenha, fazer com que o gerente faça o cadastro do cliente e 
+                    //abra a sua conta
                     break;
                 case 2:
                     acessoGerente.Menu();
+                    //no view pedir o login caso nn tenha, abrir para criar conta gerente
                     break;
                 case 3:
                     System.exit(0);
