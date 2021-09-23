@@ -1,6 +1,7 @@
 package br.unicap.pet.neurotech.view;
 
 import br.unicap.pet.neurotech.view.util.Leitor;
+import br.unicap.pet.neurotech.model.Exceptions.*;
 
 public class MenuPrincipal {
 
@@ -8,6 +9,7 @@ public class MenuPrincipal {
         int op;
         ClienteLogin loginCliente = new ClienteLogin();
         GerenteLogin loginGerente = new GerenteLogin();
+
         do {
 
             System.out.println("<<MENU PRINCIPAL>>");

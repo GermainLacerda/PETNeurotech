@@ -2,7 +2,7 @@ package br.unicap.pet.neurotech.view;
 
 import br.unicap.pet.neurotech.control.GerenteController;
 import br.unicap.pet.neurotech.view.util.Leitor;
-
+import br.unicap.pet.neurotech.model.Exceptions.*;
 public class GerenteView {
 
     GerenteController acesso = new GerenteController();

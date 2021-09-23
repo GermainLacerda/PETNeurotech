@@ -1,7 +1,7 @@
 package br.unicap.pet.neurotech.view;
 
 import br.unicap.pet.neurotech.view.util.Leitor;
-
+import br.unicap.pet.neurotech.model.Exceptions.*;
 public class MenuGerente {
 
     public void Menu() {
