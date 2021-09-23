@@ -6,8 +6,8 @@ public class MenuPrincipal {
 
     public static void main(String[] args) {
         int op;
-        MenuCliente acessoCliente = new MenuCliente();
-        MenuGerente acessoGerente = new MenuGerente();
+        ClienteLogin loginCliente = new ClienteLogin();
+        GerenteLogin loginGerente = new GerenteLogin();
         do {
 
             System.out.println("<<MENU PRINCIPAL>>");
@@ -17,13 +17,10 @@ public class MenuPrincipal {
             op = Leitor.getLeitor().nextInt();
             switch (op) {
                 case 1:
-                    acessoCliente.Menu();
-                    //no view pedir o login caso nn tenha, fazer com que o gerente faça o cadastro do cliente e 
-                    //abra a sua conta
+                    loginCliente.Login();
                     break;
                 case 2:
-                    acessoGerente.Menu();
-                    //no view pedir o login caso nn tenha, abrir para criar conta gerente
+                    loginGerente.Login();
                     break;
                 case 3:
                     System.exit(0);
