@@ -1,49 +1,38 @@
 package br.unicap.pet.neurotech.model.dao;
 
+import br.unicap.pet.neurotech.model.Exceptions.*;
+
 public class Conta {
 
-    private int numConta, tipoConta;
+    private int numConta;
     private float saldo;
-    private double bonus;
 
-    public Conta(int num, int tipo) {
+    public Conta(int num) {
         this.saldo = 0;
-        this.bonus = 0;
         this.numConta = num;
-        this.tipoConta = tipo;
     }
 
     public int getNumero() {
         return this.numConta;
     }
 
-
-    public int getTipo() {
-        return this.tipoConta;
-    }
-
-    public void sacar(float quantia) {
+    public void sacar(float quantia) throws SaldoInsuficienteException{
         if (this.saldo > quantia) {
-            this.saldo -= quantia;
+            this.saldo = this.saldo - quantia;
+        }
+        else {
+            throw new SaldoInsuficienteException();
         }
     }
 
     public void depositar(float quantia) {
-        this.saldo += quantia;
+        this.saldo = this.saldo + quantia;;
     }
 
-    public void AddBonus(double porcentagem) {
-        this.bonus = this.bonus+porcentagem;
-    }
-
-    public void bonificar() {
-        this.saldo += this.bonus;
-        this.bonus = 0;
-    }
 
     @Override
     public String toString() {
-        String s = "O numero da conta é: " + this.numConta + "\nO saldo da conta é: " + this.saldo + "\nO bonus na conta é: "+this.bonus;
+        String s = "O numero da conta é: " + this.numConta + "\nO saldo da conta é: " + this.saldo;
         return s;
     }
 }

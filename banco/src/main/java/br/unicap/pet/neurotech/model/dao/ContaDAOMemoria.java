@@ -2,35 +2,27 @@ package br.unicap.pet.neurotech.model.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import br.unicap.pet.neurotech.model.Exceptions.*;
 public class ContaDAOMemoria implements ContaDAO {
 
-    private List<Conta> clientes;
+    private List<Conta> contas;
     private static ContaDAOMemoria self;
 
     public ContaDAOMemoria() {
-        clientes = new ArrayList<Conta>();
+        contas = new ArrayList<Conta>();
     }
 
     @Override
     public boolean buscarConta(int numConta) {
         boolean encontrado = false;
-        if (clientes.isEmpty() == false) {
-            for (Conta conta : clientes) {
+        if (contas.isEmpty() == false) {
+            for (Conta conta : contas) {
                 if (conta.getNumero() == numConta) {
                     encontrado = true;
-                    return encontrado;
                 }
             }
         }
         return encontrado;
-    }
-
-    @Override
-    public void criarConta(int numConta, int tipoConta) {
-        Conta aux = new Conta(numConta, tipoConta);
-        clientes.add(aux);
-
     }
 
     public static ContaDAO getInstance() {
@@ -41,48 +33,64 @@ public class ContaDAOMemoria implements ContaDAO {
     }
 
     @Override
-    public void sacarConta(int numConta, float quantia) {
-        for (Conta conta : clientes) {
+    public void sacarConta(int numConta, float quantia) throws SaldoInsuficienteException, ContaInexistenteException{
+        for (Conta conta : contas) {
             if (conta.getNumero() == numConta) {
                 conta.sacar(quantia);
             }
         }
+        throw new ContaInexistenteException();
     }
 
     @Override
     public void depositarConta(int numConta, float quantia) {
-        double result;
-        for (Conta conta : clientes) {
+        for (Conta conta : contas) {
             if (conta.getNumero() == numConta) {
-                if (conta.getTipo() == 1) {
-                    conta.depositar(quantia);
-                    result = quantia * 0.01;
-                    conta.AddBonus(result);
-                } else {
-                    conta.depositar(quantia);
-                }
-
+                conta.depositar(quantia);
             }
         }
+
+    }
+
+    @Override
+    public void criarConta(int numConta) {
+        Conta aux = new Conta(numConta);
+        contas.add(aux);
+
+    }
+
+    @Override
+    public void criarContaBonus(int numConta) {
+
+        boolean b = buscarConta(numConta);
+        if (!b) {
+            Conta c = new Conta(numConta);
+            contas.add(c);
+        }
+
     }
 
     @Override
     public void aplicarBonus(int numConta) {
-        for (Conta conta : clientes) {
+        for (Conta conta : contas) {
             if (conta.getNumero() == numConta) {
-                conta.bonificar();
+                if (conta instanceof ContaBonus) {
+                    ((ContaBonus) conta).renderBonus();
+                }
+                return;
             }
         }
-
     }
 
     @Override
-    public void Saldo(int numConta) {
-        for (Conta conta : clientes) {
+    public String Saldo(int numConta) {
+        for (Conta conta : contas) {
             if (conta.getNumero() == numConta) {
-                  System.out.println(conta.toString());
+                return conta.toString();
             }
         }
-        
+        return "Unexpected Error";
+
     }
+
 }

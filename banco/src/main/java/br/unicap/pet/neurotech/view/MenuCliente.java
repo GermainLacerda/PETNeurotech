@@ -22,12 +22,14 @@ public class MenuCliente {
                 case 2:
                     cv.depositar();
                     break;
-                    case 3:
-                        cv.Saldo();
-                        break;
+                case 3:
+                    cv.Saldo();
+                    break;
                 case 4:
                 	System.out.println("Voltando!!");
                     break;
+                default:
+                System.out.println("Opção invalida!!");
             }
         } while (op != 4);
 

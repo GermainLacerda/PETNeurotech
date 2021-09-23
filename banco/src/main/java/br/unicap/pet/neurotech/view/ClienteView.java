@@ -2,6 +2,7 @@ package br.unicap.pet.neurotech.view;
 
 import br.unicap.pet.neurotech.control.ClienteController;
 import br.unicap.pet.neurotech.view.util.Leitor;
+import br.unicap.pet.neurotech.model.Exceptions.*;
 
 public class ClienteView {
 
@@ -9,17 +10,17 @@ public class ClienteView {
 
     public void sacar() {
         int numConta;
-
-        System.out.println("numero da conta ");
-        numConta = Leitor.getLeitor().nextInt();
-        boolean haConta = acesso.buscar(numConta);
-
-        if (haConta) {
+        try {
+            System.out.println("numero da conta ");
+            numConta = Leitor.getLeitor().nextInt();
             System.out.println("Informe a quantia a Sacar: ");
             float quantia = Leitor.getLeitor().nextFloat();
             acesso.sacar(numConta, quantia);
-        } else {
-            System.out.println("Conta Inexistente");
+            System.out.println("Saque realizado com sucesso");
+        } catch (SaldoInsuficienteException e) {
+            System.out.println("Saldo Insuficiente para o saque");
+        } catch (ContaInexistenteException e) {
+            System.out.println("Número de conta não existe");
         }
     }
 
@@ -39,15 +40,15 @@ public class ClienteView {
         }
     }
 
-    public void Saldo(){
+    public void Saldo() {
         int numConta;
 
         System.out.println("numero da conta ");
         numConta = Leitor.getLeitor().nextInt();
         boolean haConta = acesso.buscar(numConta);
         if (haConta) {
-            
-            acesso.Saldo(numConta);
+            System.out.println(acesso.Saldo(numConta));
+            // imprime o saldo aki, nao no toString
         } else {
             System.out.println("Conta Inexistente");
         }

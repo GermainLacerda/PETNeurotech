@@ -11,8 +11,12 @@ public class GerenteController {
         return dao.buscarConta(numConta);
     }
 
-    public void criarConta(int numConta, int tipoConta) {
-        dao.criarConta(numConta, tipoConta);
+    public void criarConta(int numConta) {
+        dao.criarConta(numConta);
+    }
+
+    public void criarContaBonus(int numConta) {
+        dao.criarConta(numConta);
     }
 
     public void aplicarBonus(int numConta) {

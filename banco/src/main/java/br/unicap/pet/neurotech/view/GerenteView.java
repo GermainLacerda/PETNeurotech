@@ -13,6 +13,7 @@ public class GerenteView {
 
         System.out.println("Informe o número da conta:");
         numConta = Leitor.getLeitor().nextInt();
+        
         boolean haConta = acesso.buscar(numConta);
         while (haConta) {
             System.out.println("Essa conta ja existe! Informe novamente o número da conta:");
@@ -20,13 +21,17 @@ public class GerenteView {
             haConta = acesso.buscar(numConta);
         }
         System.out.println("Informe o tipo da conta(0 para normal 1 para bonificada): ");
-        tipoConta = Leitor.getLeitor().nextInt();
+        tipoConta = Leitor.getLeitor().nextInt();        
         while (tipoConta != 0 && tipoConta != 1) {
             System.out.println("Informe o tipo da conta novamente(0 para normal 1 para bonificada): ");
             tipoConta = Leitor.getLeitor().nextInt();
         }
-
-        acesso.criarConta(numConta, tipoConta);
+        if (tipoConta==1){
+            acesso.criarContaBonus(numConta);
+        } else{
+            acesso.criarConta(numConta);
+        }
+        
 
     }
 

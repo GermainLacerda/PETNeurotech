@@ -2,7 +2,7 @@ package br.unicap.pet.neurotech.control;
 
 import br.unicap.pet.neurotech.model.dao.ContaDAO;
 import br.unicap.pet.neurotech.model.dao.ContaDAOMemoria;
-
+import br.unicap.pet.neurotech.model.Exceptions.*;
 public class ClienteController {
 
     private ContaDAO dao = ContaDAOMemoria.getInstance();
@@ -11,7 +11,7 @@ public class ClienteController {
         return dao.buscarConta(numConta);
     }
 
-    public void sacar(int numConta, float quantia) {
+    public void sacar(int numConta, float quantia) throws  SaldoInsuficienteException, ContaInexistenteException{
         dao.sacarConta(numConta, quantia);
     }
 
@@ -19,7 +19,7 @@ public class ClienteController {
         dao.depositarConta(numConta, quantia);
     }
 
-    public void Saldo(int numConta) {
-        dao.Saldo(numConta);
+    public String Saldo(int numConta) {
+        return dao.Saldo(numConta);
     }
 }
