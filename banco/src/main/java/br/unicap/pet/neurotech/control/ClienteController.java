@@ -11,15 +11,15 @@ public class ClienteController {
         return dao.buscarConta(numConta);
     }
 
-    public void sacar(int numConta, float quantia) throws  SaldoInsuficienteException, ContaInexistenteException{
-        dao.sacarConta(numConta, quantia);
+    public void sacar(int login, int numConta, float quantia) throws  SaldoInsuficienteException, ContaInexistenteException{
+        dao.sacarConta(login, numConta, quantia);
     }
 
-    public void depositar(int numConta, float quantia) {
-        dao.depositarConta(numConta, quantia);
+    public void depositar(int login, int numConta, float quantia) {
+        dao.depositarConta(login, numConta, quantia);
     }
 
-    public String Saldo(int numConta) {
-        return dao.Saldo(numConta);
+    public String Saldo(int login, int numConta) {
+        return dao.Saldo(login, numConta);
     }
 }

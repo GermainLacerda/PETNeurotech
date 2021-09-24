@@ -19,12 +19,14 @@ public class Menbros {
         return this.login;
     }
 
-    public Boolean ConferirSenha(String senhaPassada) {
+    public boolean ConferirSenha(String senhaPassada){
         boolean confere = false;
         if (this.senha.equals(senhaPassada) == true) {
             confere = true;
+            return confere;
         }
         return confere;
+        
     }
 
     public void AlterarSenha(String senhaPassada) {

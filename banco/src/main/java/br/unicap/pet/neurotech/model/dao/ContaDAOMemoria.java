@@ -34,9 +34,9 @@ public class ContaDAOMemoria implements ContaDAO {
     }
 
     @Override
-    public void sacarConta(int numConta, float quantia) throws SaldoInsuficienteException, ContaInexistenteException {
+    public void sacarConta(int login, int numConta, float quantia) throws SaldoInsuficienteException, ContaInexistenteException {
         for (Conta conta : contas) {
-            if (conta.getNumero() == numConta) {
+            if (conta.getNumero() == numConta && conta.getLogin() == login) {
                 conta.sacar(quantia);
             }
         }
@@ -44,9 +44,9 @@ public class ContaDAOMemoria implements ContaDAO {
     }
 
     @Override
-    public void depositarConta(int numConta, float quantia) {
+    public void depositarConta(int login, int numConta, float quantia) {
         for (Conta conta : contas) {
-            if (conta.getNumero() == numConta) {
+            if (conta.getNumero() == numConta && conta.getLogin() == login) {
                 conta.depositar(quantia);
             }
         }
@@ -54,18 +54,18 @@ public class ContaDAOMemoria implements ContaDAO {
     }
 
     @Override
-    public void criarConta(int numConta) {
-        Conta aux = new Conta(numConta);
+    public void criarConta(int login, int numConta) {
+        Conta aux = new Conta(login, numConta);
         contas.add(aux);
 
     }
 
     @Override
-    public void criarContaBonus(int numConta) {
+    public void criarContaBonus(int login, int numConta) {
 
         boolean b = buscarConta(numConta);
         if (!b) {
-            Conta c = new Conta(numConta);
+            Conta c = new ContaBonus(login, numConta);
             contas.add(c);
         }
 
@@ -84,14 +84,16 @@ public class ContaDAOMemoria implements ContaDAO {
     }
 
     @Override
-    public String Saldo(int numConta) {
+    public String Saldo(int login, int numConta) {
         for (Conta conta : contas) {
-            if (conta.getNumero() == numConta) {
+            if (conta.getNumero() == numConta && conta.getLogin() == login) {
                 return conta.toString();
             }
         }
         return "Unexpected Error";
 
     }
+
+   
 
 }

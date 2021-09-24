@@ -6,15 +6,16 @@ public interface ContaDAO {
 
     boolean buscarConta(int numConta);
 
-    void sacarConta(int numConta, float quantia) throws SaldoInsuficienteException, ContaInexistenteException;
 
-    void depositarConta(int numConta, float quantia);
+    void sacarConta(int login, int numConta, float quantia) throws SaldoInsuficienteException, ContaInexistenteException;
 
-    void criarConta(int numConta);
+    void depositarConta(int login, int numConta, float quantia);
 
-    void criarContaBonus(int numConta);
+    void criarConta(int login, int numConta);
+
+    void criarContaBonus(int login, int numConta);
 
     void aplicarBonus(int numConta);
 
-    String Saldo(int numConta);
+    String Saldo(int login, int numConta);
 }

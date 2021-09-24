@@ -19,7 +19,14 @@ public class ADMController {
         dao.AlterarSenha(senhaNova);
     }
 
-    public void CriarConta (int login, String senha){
-        dao.CriarConta(login, senha);
+    public void CriarContaCliente (int login, String senha){
+        dao.CriarContaCliente(login, senha);
+    }
+    public void CriarContaGerente (int login, String senha){
+        dao.CriarContaGerente(login, senha);
+    }
+
+    public boolean VerificarGerente (int login){
+        return dao.VerificarGerente(login);
     }
 }

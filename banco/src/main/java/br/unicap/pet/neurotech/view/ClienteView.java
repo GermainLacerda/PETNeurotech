@@ -8,14 +8,14 @@ public class ClienteView {
 
     ClienteController acesso = new ClienteController();
 
-    public void sacar() {
+    public void sacar(int login) {
         int numConta;
         try {
             System.out.println("numero da conta ");
             numConta = Leitor.getLeitor().nextInt();
             System.out.println("Informe a quantia a Sacar: ");
             float quantia = Leitor.getLeitor().nextFloat();
-            acesso.sacar(numConta, quantia);
+            acesso.sacar(login, numConta, quantia);
             System.out.println("Saque realizado com sucesso");
         } catch (SaldoInsuficienteException e) {
             System.out.println("Saldo Insuficiente para o saque");
@@ -24,7 +24,7 @@ public class ClienteView {
         }
     }
 
-    public void depositar() {
+    public void depositar(int login) {
         int numConta;
 
         System.out.println("numero da conta ");
@@ -34,21 +34,20 @@ public class ClienteView {
         if (haConta) {
             System.out.println("Informe a quantia a Depositar: ");
             float quantia = Leitor.getLeitor().nextFloat();
-            acesso.depositar(numConta, quantia);
+            acesso.depositar(login, numConta, quantia);
         } else {
             System.out.println("Conta Inexistente");
         }
     }
 
-    public void Saldo() {
+    public void Saldo(int login) {
         int numConta;
 
         System.out.println("numero da conta ");
         numConta = Leitor.getLeitor().nextInt();
         boolean haConta = acesso.buscar(numConta);
         if (haConta) {
-            System.out.println(acesso.Saldo(numConta));
-            // imprime o saldo aki, nao no toString
+            System.out.println(acesso.Saldo(login, numConta));
         } else {
             System.out.println("Conta Inexistente");
         }

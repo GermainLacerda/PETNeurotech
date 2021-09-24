@@ -5,17 +5,22 @@ import br.unicap.pet.neurotech.model.Exceptions.*;
 public class Conta {
 
     private int numConta;
+    private int login;
     private float saldo;
 
     // a conta possui um cliente atribuido a ela, private menbro id instanceof !=
     // menbroGerente
-    public Conta(int num) {
+    public Conta(int login, int num) {
         this.saldo = 0;
         this.numConta = num;
+        this.login = login;
     }
 
     public int getNumero() {
         return this.numConta;
+    }
+    public int getLogin (){
+        return this.login;
     }
 
     public void sacar(float quantia) throws SaldoInsuficienteException {
