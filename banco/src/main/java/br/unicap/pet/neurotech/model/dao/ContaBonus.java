@@ -2,8 +2,8 @@ package br.unicap.pet.neurotech.model.dao;
 import br.unicap.pet.neurotech.model.Exceptions.*;
 public class ContaBonus extends Conta {
     private float bonus; 
-    public ContaBonus(int num) {
-        super(num);
+    public ContaBonus(int login, int num) {
+        super(login, num);
         this.bonus = 0;
     }
 

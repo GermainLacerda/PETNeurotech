@@ -54,12 +54,36 @@ public class MenbrosDAOMemoria implements MenbrosDAO {
             }
         }
     }
-
+    
     @Override
-    public void CriarConta(int login, String senha) {
-        Menbros aux = new Menbros(login, senha);
+    public void CriarContaCliente(int login, String senha) {
+        Menbros aux = new MenbroCliente(login, senha);
         Menbros.add(aux);
 
+    }
+
+    @Override
+    public void CriarContaGerente(int login, String senha) {
+        Menbros aux = new MenbroGerente(login, senha);
+        Menbros.add(aux);
+
+    }
+
+    @Override
+    public boolean VerificarGerente (int login){
+        boolean gerente = false;
+        if (Menbros.isEmpty() == false) {
+            for (Menbros menbro : Menbros) {
+                if (menbro.getLogin() == login) {
+                    if (menbro instanceof MenbroGerente) {
+                        gerente = true;
+                        return gerente;
+                    }
+                    
+                }
+            }
+        }
+        return gerente;
     }
 
 }

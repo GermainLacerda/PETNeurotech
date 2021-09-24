@@ -4,7 +4,7 @@ import br.unicap.pet.neurotech.view.util.Leitor;
 import br.unicap.pet.neurotech.model.Exceptions.*;
 public class MenuCliente {
 
-    public void Menu() {
+    public void Menu(int login) {
         ClienteView cv = new ClienteView();
         int op;
         do {
@@ -17,13 +17,13 @@ public class MenuCliente {
             System.out.println("");
             switch (op) {
                 case 1:
-                    cv.sacar();
+                    cv.sacar(login);
                     break;
                 case 2:
-                    cv.depositar();
+                    cv.depositar(login);
                     break;
                 case 3:
-                    cv.Saldo();
+                    cv.Saldo(login);
                     break;
                 case 4:
                 	System.out.println("Voltando!!");
