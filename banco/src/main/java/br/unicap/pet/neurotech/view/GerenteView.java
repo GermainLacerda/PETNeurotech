@@ -15,7 +15,7 @@ public class GerenteView {
         int tipoConta;
         int login;
 
-        System.out.println("Informe o número da conta:");
+        System.out.println("Informe o número da conta:"); //gerado automaticamente pelo banco de dados
         numConta = Leitor.getLeitor().nextInt();
         boolean haConta = acesso.buscar(numConta);
         while (haConta) {
@@ -26,7 +26,7 @@ public class GerenteView {
 
         System.out.println("Informe o login do cliente para vincular a conta");
         login = Leitor.getLeitor().nextInt();
-        while (acessoadm.VerificarLogin(login) != false) {
+        while (acessoadm.VerificarLogin(login) == false) {
             System.out.println("Cliente não encontrado, informe novamente para vincular a conta");
             login = Leitor.getLeitor().nextInt();
         }
@@ -47,8 +47,13 @@ public class GerenteView {
 
     public void bonificarConta() {
         int numConta;
+        try {
         System.out.println("Informe o número da conta:");
         numConta = Leitor.getLeitor().nextInt();
-        acesso.aplicarBonus(numConta);
+            acesso.aplicarBonus(numConta);
+        } catch (ContaInexistenteException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 }

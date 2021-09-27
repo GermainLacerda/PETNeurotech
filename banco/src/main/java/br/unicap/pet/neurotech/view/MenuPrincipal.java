@@ -1,10 +1,11 @@
 package br.unicap.pet.neurotech.view;
 
+import br.unicap.pet.neurotech.model.Exceptions.ContaInexistenteException;
 import br.unicap.pet.neurotech.view.util.Leitor;
 
 public class MenuPrincipal {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ContaInexistenteException {
         int op;
         ClienteLogin loginCliente = new ClienteLogin();
         GerenteLogin loginGerente = new GerenteLogin();

@@ -27,6 +27,7 @@ public class MenbrosDAOMemoria implements MenbrosDAO {
             for (Menbros menbro : Menbros) {
                 if (menbro.getLogin() == login) {
                     encontrado = true;
+                    return encontrado;
                 }
             }
         }
