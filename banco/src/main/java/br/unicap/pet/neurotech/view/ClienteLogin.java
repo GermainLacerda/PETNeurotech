@@ -5,7 +5,7 @@ import br.unicap.pet.neurotech.control.ADMController;
 import br.unicap.pet.neurotech.model.Exceptions.*;
 
 public class ClienteLogin {
-    public void Login() {
+    public void Login() throws ContaInexistenteException {
         int login;
         String senha = " ";
         int op;

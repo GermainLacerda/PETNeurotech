@@ -9,13 +9,13 @@ public interface ContaDAO {
 
     void sacarConta(int login, int numConta, float quantia) throws SaldoInsuficienteException, ContaInexistenteException;
 
-    void depositarConta(int login, int numConta, float quantia);
+    void depositarConta(int login, int numConta, float quantia)throws ContaInexistenteException;
 
     void criarConta(int login, int numConta);
 
     void criarContaBonus(int login, int numConta);
 
-    void aplicarBonus(int numConta);
+    void aplicarBonus(int numConta)throws ContaInexistenteException;
 
     String Saldo(int login, int numConta);
 }

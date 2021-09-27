@@ -18,26 +18,26 @@ public class ClienteView {
             acesso.sacar(login, numConta, quantia);
             System.out.println("Saque realizado com sucesso");
         } catch (SaldoInsuficienteException e) {
-            System.out.println("Saldo Insuficiente para o saque");
+            e.printStackTrace();
         } catch (ContaInexistenteException e) {
-            System.out.println("Número de conta não existe");
+            e.printStackTrace();
         }
     }
 
-    public void depositar(int login) {
+    public void depositar(int login){
         int numConta;
-
+        try {
         System.out.println("numero da conta ");
         numConta = Leitor.getLeitor().nextInt();
-        boolean haConta = acesso.buscar(numConta);
-
-        if (haConta) {
-            System.out.println("Informe a quantia a Depositar: ");
+        System.out.println("Informe a quantia a Depositar: ");
             float quantia = Leitor.getLeitor().nextFloat();
             acesso.depositar(login, numConta, quantia);
-        } else {
-            System.out.println("Conta Inexistente");
+        }catch (ContaInexistenteException e) {
+            e.printStackTrace();
         }
+        
+            
+        
     }
 
     public void Saldo(int login) {

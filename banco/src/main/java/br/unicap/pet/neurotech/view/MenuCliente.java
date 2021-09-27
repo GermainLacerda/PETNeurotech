@@ -4,7 +4,7 @@ import br.unicap.pet.neurotech.view.util.Leitor;
 import br.unicap.pet.neurotech.model.Exceptions.*;
 public class MenuCliente {
 
-    public void Menu(int login) {
+    public void Menu(int login) throws ContaInexistenteException{
         ClienteView cv = new ClienteView();
         int op;
         do {

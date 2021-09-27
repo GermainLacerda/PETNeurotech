@@ -1,11 +1,11 @@
 package br.unicap.pet.neurotech.control;
 
 import br.unicap.pet.neurotech.model.dao.ContaDAO;
-import br.unicap.pet.neurotech.model.dao.ContaDAOMemoria;
+import br.unicap.pet.neurotech.model.dao.ContaDAODataBase;
 import br.unicap.pet.neurotech.model.Exceptions.*;
 public class ClienteController {
 
-    private ContaDAO dao = ContaDAOMemoria.getInstance();
+    private ContaDAO dao = ContaDAODataBase.getInstance();
 
     public boolean buscar(int numConta) {
         return dao.buscarConta(numConta);
@@ -15,7 +15,7 @@ public class ClienteController {
         dao.sacarConta(login, numConta, quantia);
     }
 
-    public void depositar(int login, int numConta, float quantia) {
+    public void depositar(int login, int numConta, float quantia)throws ContaInexistenteException {
         dao.depositarConta(login, numConta, quantia);
     }
 
