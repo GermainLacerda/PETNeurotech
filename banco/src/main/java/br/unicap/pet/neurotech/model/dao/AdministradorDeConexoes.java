@@ -33,15 +33,14 @@ public class AdministradorDeConexoes {
         }
     }
 
-    public void Insert(String select) {
+    public void Insert(String insert) {
         String url = "jdbc:mysql://sql10.freemysqlhosting.net:3306/sql10439832";
         String user = "sql10439832";
         String password = "zAzLrhmaiF";
-        String query = select;
         try {
             Connection con = DriverManager.getConnection(url, user, password);
             Statement st = con.createStatement();
-            st.executeQuery(query);
+            st.executeUpdate(insert);
             System.out.println("INSERIDO COM SUCESSO");
             con.close();
 
@@ -51,16 +50,15 @@ public class AdministradorDeConexoes {
         }
     }
 
-    public void Update(String select) {
+    public void Update(String update) {
         String url = "jdbc:mysql://sql10.freemysqlhosting.net:3306/sql10439832";
         String user = "sql10439832";
         String password = "zAzLrhmaiF";
-        String query = select;
 
         try {
             Connection con = DriverManager.getConnection(url, user, password);
             Statement st = con.createStatement();
-            st.executeQuery(query);
+            st.executeUpdate(update);
             System.out.println("ATUALIZADO COM SUCESSO");
             con.close();
         } catch (SQLException ex) {

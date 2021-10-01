@@ -1,5 +1,7 @@
 package br.unicap.pet.neurotech.model.dao;
 
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
+
 import br.unicap.pet.neurotech.model.Exceptions.ContaInexistenteException;
 import br.unicap.pet.neurotech.model.Exceptions.SaldoInsuficienteException;
 
@@ -40,7 +42,7 @@ public class ContaDAODataBase implements ContaDAO {
         String busca;
         String atualizar;
         float saldo;
-        busca = "SELECT num FROM sql10439832.ContaGermain WHERE num = " + numConta + " AND Login =" + login + ";";
+        busca = "SELECT num FROM sql10439832.ContaGermain WHERE num = " + numConta + " AND login =" + login + ";";
         // busca para achar a conta e se a mesma está atrelada ao Cliente.
         if (CDB.Select(busca, 1).isEmpty() == false) {
 
@@ -70,7 +72,7 @@ public class ContaDAODataBase implements ContaDAO {
         String busca;
         String atualizar;
         float saldo;
-        busca = "SELECT num FROM sql10439832.ContaGermain WHERE num = " + numConta + " AND Login =" + login + ";";
+        busca = "SELECT num FROM sql10439832.ContaGermain WHERE num = " + numConta + " AND login =" + login + ";";
         // busca para achar a conta e se a mesma está atrelada ao Cliente.
         if (CDB.Select(busca, 1).isEmpty() == false) {
             busca = "SELECT saldo FROM sql10439832.ContaGermain WHERE num = " + numConta + ";";
@@ -80,7 +82,7 @@ public class ContaDAODataBase implements ContaDAO {
                 saldo = Float.parseFloat(CDB.Select(busca, 1)) + quantia;
             }
 
-            busca = "SELECT tipo FROM sql10439832.ContaGermain WHERE num = " + numConta + " AND Login =" + login + ";";
+            busca = "SELECT tipo FROM sql10439832.ContaGermain WHERE num = " + numConta + " AND login =" + login + ";";
             if (busca.equals("normal")) {
                 busca = "SELECT saldo FROM sql10439832.ContaGermain WHERE num = " + numConta + ";";
                 saldo += Float.parseFloat(CDB.Select(busca, 1));
@@ -107,9 +109,6 @@ public class ContaDAODataBase implements ContaDAO {
                 CDB.Update(atualizar);
             }
 
-            atualizar = "UPDATE sql10439832.ContaGermain SET saldo = " + saldo + " WHERE num = " + numConta + ";";
-            CDB.Update(atualizar);
-
         } else {
             throw new ContaInexistenteException();
         }
@@ -118,17 +117,16 @@ public class ContaDAODataBase implements ContaDAO {
 
     @Override
     public void criarConta(int login, int numConta) {
-        String busca;
+        String busca= "SELECT num FROM sql10439832.ContaGermain WHERE num = " + numConta + " AND login =" + login + ";";;
         String inserir;
-        String tipo = "normal";
+        String tipo = "'normal'";
         float saldo = (float) 0.0;
-        busca = "SELECT num FROM sql10439832.ContaGermain WHERE num = " + numConta + " AND Login =" + login + ";";
         // busca para achar a conta e se a mesma está atrelada ao Cliente.
-        if (CDB.Select(busca, 1) == null) {
+        if (CDB.Select(busca, 1).equals("")) {
 
-            inserir = "INSERT INTO sql10439832.ContaGermain (saldo, Login, tipo, bonus) VALUES (" + saldo + ", " + login
-                    + ", " + tipo + ");";
-            CDB.Update(inserir);
+            inserir = "INSERT INTO sql10439832.ContaGermain (num, saldo, login, tipo, bonus) VALUES ( null, " + saldo + ", " + login + ", " + tipo + ", " + 0.0 +");";
+                    
+            CDB.Insert(inserir);
 
         } else {
             System.out.println("Conta já existente!!");
@@ -138,15 +136,13 @@ public class ContaDAODataBase implements ContaDAO {
 
     @Override
     public void criarContaBonus(int login, int numConta) {
-        String busca;
+        String busca = "SELECT num FROM sql10439832.ContaGermain WHERE num = " + numConta + " AND login =" + login + ";";
         String inserir;
-        String tipo = "bonus";
+        String tipo = "'bonus'";
         float saldo = (float) 0.0;
-        busca = "SELECT num FROM sql10439832.ContaGermain WHERE num = " + numConta + " AND Login =" + login + ";";
         // busca para achar a conta e se a mesma está atrelada ao Cliente.
-        if (CDB.Select(busca, 1) == null) {
-            inserir = "INSERT INTO sql10439832.ContaGermain (saldo, Login, tipo, bonus) VALUES (" + saldo + ", " + login
-                    + ", " + tipo + ", " + 0.0 + ");";
+        if (CDB.Select(busca, 1).equals(null)) {
+            inserir = "INSERT INTO sql10439832.ContaGermain (num, saldo, login, tipo, bonus) VALUES ( null, " + saldo + ", " + login + ", " + tipo + ", " + 0.0 + ");";
             CDB.Update(inserir);
 
         } else {
@@ -184,7 +180,7 @@ public class ContaDAODataBase implements ContaDAO {
     @Override
     public String Saldo(int login, int numConta) {
         String busca;
-        busca = "SELECT * FROM sql10439832.ContaGermain WHERE num = " + numConta + " AND Login =" + login + ";";
+        busca = "SELECT * FROM sql10439832.ContaGermain WHERE num = " + numConta + " AND login =" + login + ";";
         if (CDB.Select(busca, 1).isEmpty() == false) {
             return CDB.Select(busca, 5);
         }
